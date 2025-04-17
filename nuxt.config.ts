@@ -1,7 +1,11 @@
 export default defineNuxtConfig({
   routeRules: {
     // revalidated every 60 seconds, in the background
-    '/**': { isr: 60 },
+    '/**': { isr: {
+      expiration: 60,
+      passQuery: true,
+      allowQuery: ["name", "url"]
+    } },
     // this page will be always fresh
     '/dynamic': { isr: false },
     // this page will be generated on demand and then cached permanently
